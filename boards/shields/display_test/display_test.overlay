@@ -6,14 +6,26 @@
  */
 
 #include <dt-bindings/zmk/matrix_transform.h>
+#include <physical_layouts.dtsi>
 
 / {
     chosen {
         zmk,kscan = &kscan0;
+        zmk,physical-layout = &test_layout;
         zephyr,console = &cdc_acm_uart;
     };
 
-    /* Dummy kscan — ZMK requires one */
+    test_layout: test_layout {
+        compatible = "zmk,physical-layout";
+        display-name = "Test Layout";
+        transform = <&default_transform>;
+
+        keys
+            = <&key_physical_attrs 100 100 0 0 0 0 0>
+            ;
+    };
+
+    /* Dummy matrix transform — ZMK requires one */
     default_transform: keymap_transform_0 {
         compatible = "zmk,matrix-transform";
         columns = <1>;
