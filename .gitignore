@@ -10,7 +10,8 @@ zmk-env/
 # West workspace
 .west/
 modules/
-zephyr/
+zephyr/*
+!zephyr/module.yml
 zmk/
 
 # IDE files

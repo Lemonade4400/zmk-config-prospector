@@ -1,0 +1,26 @@
+if SHIELD_DISPLAY_TEST
+
+config ZMK_KEYBOARD_NAME
+    default "DispTest"
+
+config ZMK_USB
+    default y
+
+config GPIO
+    default y
+
+config DISPLAY_HW_TEST
+    default y
+
+# Disable display stack (we do raw GPIO)
+config ZMK_DISPLAY
+    default n
+
+config ZMK_SPLIT
+    default n
+
+# Keep BLE enabled to avoid ZMK build issues on nRF52
+config ZMK_BLE
+    default y
+
+endif

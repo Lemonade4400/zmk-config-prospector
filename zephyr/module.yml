@@ -1,0 +1,7 @@
+name: display-test-module
+build:
+  cmake: .
+  kconfig: Kconfig
+  settings:
+    board_root: .
+    dts_root: .

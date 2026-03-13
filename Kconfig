@@ -1,0 +1,6 @@
+config DISPLAY_HW_TEST
+    bool "Display hardware diagnostic test"
+    default n
+    help
+      Enable display hardware diagnostic test that checks each pin
+      individually and reports results via USB serial console.

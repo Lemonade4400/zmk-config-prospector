@@ -1,0 +1,45 @@
+/*
+ * Display Hardware Test Shield
+ * Minimal overlay — just defines GPIO access to display pins.
+ * No SPI driver, no display driver, no LVGL.
+ * All pins are controlled via raw GPIO bit-bang.
+ */
+
+#include <dt-bindings/zmk/matrix_transform.h>
+
+/ {
+    chosen {
+        zmk,kscan = &kscan0;
+        zephyr,console = &cdc_acm_uart;
+    };
+
+    /* Dummy kscan — ZMK requires one */
+    default_transform: keymap_transform_0 {
+        compatible = "zmk,matrix-transform";
+        columns = <1>;
+        rows = <1>;
+        map = <RC(0,0)>;
+    };
+
+    kscan0: kscan {
+        compatible = "zmk,kscan-gpio-direct";
+        wakeup-source;
+        input-gpios = <&xiao_d 0 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+    };
+};
+
+/* USB CDC ACM for serial console */
+&zephyr_udc0 {
+    cdc_acm_uart: cdc_acm_uart {
+        compatible = "zephyr,cdc-acm-uart";
+    };
+};
+
+/* Make sure SPI2/SPI3 are disabled — we do raw GPIO */
+&spi2 {
+    status = "disabled";
+};
+
+&spi3 {
+    status = "disabled";
+};

@@ -1,9 +1,14 @@
 ---
 include:
-  # Scanner mode (non-touch by default)
+  # Display hardware diagnostic test
   - board: seeeduino_xiao_ble
-    shield: prospector_scanner
-    cmake-args: -DEXTRA_CONF_FILE=../../config/overrides.conf
+    shield: display_test
+    artifact-name: display_hw_test
+
+#  # Scanner mode (non-touch by default)
+#  - board: seeeduino_xiao_ble
+#    shield: prospector_scanner
+#    cmake-args: -DEXTRA_CONF_FILE=../../config/overrides.conf
 
   # Settings reset utility
   - board: seeeduino_xiao_ble
