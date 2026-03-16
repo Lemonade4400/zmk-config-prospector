@@ -1,0 +1,25 @@
+/*
+ * User overlay: Force backlight ON via GPIO (debug - bypass PWM)
+ * This overrides the PWM backlight with a simple always-on GPIO.
+ */
+
+/* Disable PWM backlight node from the shield */
+/delete-node/ &backlight;
+
+/* Disable PWM0 to prevent conflicts */
+&pwm0 {
+    status = "disabled";
+};
+
+/* Force P1.11 HIGH as GPIO for backlight */
+/ {
+    gpio_backlight {
+        compatible = "gpio-leds";
+        status = "okay";
+
+        backlight_gpio: backlight_pin {
+            gpios = <&gpio1 11 GPIO_ACTIVE_HIGH>;
+            label = "Display Backlight GPIO";
+        };
+    };
+};
