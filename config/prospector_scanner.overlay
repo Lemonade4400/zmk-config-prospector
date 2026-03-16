@@ -1,25 +1,13 @@
 /*
- * User overlay: Force backlight ON via GPIO (debug - bypass PWM)
- * This overrides the PWM backlight with a simple always-on GPIO.
+ * User overlay: Test inverted backlight polarity
+ * If the backlight is active-LOW, inverting the PWM should turn it on.
  */
 
-/* Disable PWM backlight node from the shield */
-/delete-node/ &backlight;
-
-/* Disable PWM0 to prevent conflicts */
-&pwm0 {
-    status = "disabled";
-};
-
-/* Force P1.11 HIGH as GPIO for backlight */
+/* Override pwmleds to use inverted polarity */
 / {
-    gpio_backlight {
-        compatible = "gpio-leds";
-        status = "okay";
-
-        backlight_gpio: backlight_pin {
-            gpios = <&gpio1 11 GPIO_ACTIVE_HIGH>;
-            label = "Display Backlight GPIO";
+    pwmleds {
+        backlight: backlight {
+            pwms = <&pwm0 0 PWM_USEC(1000) PWM_POLARITY_INVERTED>;
         };
     };
 };
