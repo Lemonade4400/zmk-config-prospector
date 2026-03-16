@@ -4,11 +4,6 @@
  * - Add nordic,invert to pinctrl (backlight circuit is active-low)
  */
 
-/* Disable pwm0 (t-ogura's default) */
-&pwm0 {
-    status = "disabled";
-};
-
 /* Add pwm1 pinctrl with nordic,invert — matching carrefinho */
 &pinctrl {
     pwm1_default: pwm1_default {
@@ -21,6 +16,20 @@
     pwm1_sleep: pwm1_sleep {
         group1 {
             psels = <NRF_PSEL(PWM_OUT0, 1, 11)>;
+            low-power-enable;
+        };
+    };
+
+    /* Override pwm0 pinctrl to NOT use P1.11 (avoid pin conflict) */
+    pwm0_default: pwm0_default {
+        group1 {
+            psels = <NRF_PSEL(PWM_OUT0, 1, 10)>;  /* dummy unused pin */
+        };
+    };
+
+    pwm0_sleep: pwm0_sleep {
+        group1 {
+            psels = <NRF_PSEL(PWM_OUT0, 1, 10)>;
             low-power-enable;
         };
     };
