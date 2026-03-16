@@ -1,23 +1,19 @@
 /*
- * User overlay: Fix backlight for beekeeb Prospector hardware
- * The backlight circuit is active-low, so we need nordic,invert on the PWM pin.
- * This simply overrides the pwm0 pinctrl from the module's shield overlay
- * to add the invert flag — no need to switch to pwm1.
+ * GPIO Backlight Test Overlay
+ *
+ * Disables the PWM backlight from the module so our GPIO test takes over.
+ * The gpio-backlight-test module drives P1.11 as a raw GPIO output
+ * and toggles it every 2 seconds to determine the correct polarity.
  */
 
-&pinctrl {
-    /* Override pwm0 pinctrl to add nordic,invert (active-low backlight) */
-    pwm0_default: pwm0_default {
-        group1 {
-            psels = <NRF_PSEL(PWM_OUT0, 1, 11)>;
-            nordic,invert;
-        };
+/* Disable PWM backlight so backlight_init.c does nothing */
+/ {
+    pwmleds {
+        status = "disabled";
     };
+};
 
-    pwm0_sleep: pwm0_sleep {
-        group1 {
-            psels = <NRF_PSEL(PWM_OUT0, 1, 11)>;
-            low-power-enable;
-        };
-    };
+/* Disable PWM0 peripheral (not needed for GPIO test) */
+&pwm0 {
+    status = "disabled";
 };

@@ -1,0 +1,4 @@
+config GPIO_BACKLIGHT_TEST
+	bool "GPIO backlight test - toggles P1.11 to test backlight"
+	default y
+	depends on GPIO
