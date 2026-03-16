@@ -10,8 +10,12 @@ zmk-env/
 # West workspace
 .west/
 modules/
-zephyr/
 zmk/
+
+# Ignore West-managed zephyr/ but keep our module.yml
+# (needed for ZMK's build-user-config.yml to detect this repo as a Zephyr module)
+zephyr/*
+!zephyr/module.yml
 
 # IDE files
 .vscode/

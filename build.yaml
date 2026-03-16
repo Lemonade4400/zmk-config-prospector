@@ -3,7 +3,6 @@ include:
   # Scanner - GPIO Backlight Test (toggles P1.11 as raw GPIO)
   - board: xiao_ble/nrf52840/zmk
     shield: prospector_scanner
-    cmake-args: -DEXTRA_ZEPHYR_MODULES=../../gpio-backlight-test
     artifact-name: prospector_scanner
 
   # Scanner - Touch Mode (swipe navigation + settings screens)
