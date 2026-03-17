@@ -1,11 +1,7 @@
 /*
  * Prospector Scanner - User Overlay
  *
- * Reduce SPI frequency for dupont wire connection (long wires add
- * parasitic capacitance that can corrupt signals at high speeds).
- * Original: 20 MHz → Reduced to 4 MHz for reliability.
+ * No SPI frequency override - using module default (20 MHz).
+ * If using long dupont wires, reduce to 4 MHz:
+ *   &st7789v { mipi-max-frequency = <4000000>; };
  */
-
-&st7789v {
-    mipi-max-frequency = <4000000>;
-};
