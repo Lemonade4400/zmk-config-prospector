@@ -1,6 +1,11 @@
 /*
  * Prospector Scanner - User Overlay
  *
- * Empty overlay - the module provides all necessary devicetree configuration.
- * Add user-specific devicetree overrides here if needed.
+ * Reduce SPI frequency for dupont wire connection (long wires add
+ * parasitic capacitance that can corrupt signals at high speeds).
+ * Original: 20 MHz → Reduced to 4 MHz for reliability.
  */
+
+&st7789v {
+    mipi-max-frequency = <4000000>;
+};
