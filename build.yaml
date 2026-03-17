@@ -1,6 +1,6 @@
 ---
 include:
-  # Scanner - GPIO Backlight Test (toggles P1.11 as raw GPIO)
+  # Scanner - Display-only mode (no touch, PWM backlight)
   - board: xiao_ble/nrf52840/zmk
     shield: prospector_scanner
     artifact-name: prospector_scanner

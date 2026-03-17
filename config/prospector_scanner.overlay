@@ -1,19 +1,6 @@
 /*
- * GPIO Backlight Test Overlay
+ * Prospector Scanner - User Overlay
  *
- * Disables the PWM backlight from the module so our GPIO test takes over.
- * The gpio-backlight-test module drives P1.11 as a raw GPIO output
- * and toggles it every 2 seconds to determine the correct polarity.
+ * Empty overlay - the module provides all necessary devicetree configuration.
+ * Add user-specific devicetree overrides here if needed.
  */
-
-/* Disable PWM backlight so backlight_init.c does nothing */
-/ {
-    pwmleds {
-        status = "disabled";
-    };
-};
-
-/* Disable PWM0 peripheral (not needed for GPIO test) */
-&pwm0 {
-    status = "disabled";
-};
